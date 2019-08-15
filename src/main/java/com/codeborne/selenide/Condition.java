@@ -417,6 +417,25 @@ public abstract class Condition {
     return new ExplainedCondition(this, message);
   }
 
+  /**
+   * Should be used for explaining the reason of condition.
+   * Parameters can be inserted following {@link java.lang.String#format(String, Object...)} syntax.
+   *
+   * @param messageFormat A format for the explanation message, using {@link java.util.Formatter} syntax
+   * @param args          Arguments referenced by the format specifiers in the format
+   *                      string.  If there are more arguments than format specifiers, the
+   *                      extra arguments are ignored.  The number of arguments is
+   *                      variable and may be zero.  The maximum number of arguments is
+   *                      limited by the maximum dimension of a Java array as defined by
+   *                      <cite>The Java&trade; Virtual Machine Specification</cite>.
+   *                      The behaviour on a
+   *                      {@code null} argument depends on the {@link java.util.Formatter} format string.
+   * @see  java.util.Formatter
+   */
+  public Condition because(String messageFormat, Object... args) {
+    return because(String.format(messageFormat, args));
+  }
+
   @Override
   public String toString() {
     return name;
